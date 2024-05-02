@@ -1,39 +1,95 @@
 
-version: '3.8'
+# version: '3.8'
+
+# services:
+#   auth-client:
+#     image: node:18.2.0-alpine3.15
+#     working_dir: /app/auth-client
+#     environment:
+#       - NODE_ENV=development
+#     ports:
+#       - "5173:5173"
+#     volumes:
+#       - ./auth-client:/app/auth-client
+#     command: sh -c "npm install -g vite && npm run dev"
+
+#   auth-server:
+#     image: node:18.2.0-alpine3.15
+#     working_dir: /app/auth-server
+#     environment:
+#       - NODE_ENV=development
+#       - MONGODB_URI=mongodb+srv://jaybhandari2404:LOhWsmZSlv1WbZrd@cluster0.nj8fje8.mongodb.net/Auth-Yt?retryWrites=true&w=majority&appName=Cluster0
+#     ports:
+#       - "8000:8000"
+#     volumes:
+#       - ./auth-server:/app/auth-server
+#     depends_on:
+#       - auth-client
+#     command: sh -c "npm install -g nodemon && npm run start-dev"
+
+
+#   db:
+#     image: mongo:4.0-xenial
+#     ports:
+#       - 27017:27017
+#     volumes:
+#       - vidly:/data/db
+
+# volumes:
+#   vidly:
+
+
+
+# ------------------------------new-------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+version: '3'
 
 services:
   auth-client:
-    image: node:18.2.0-alpine3.15
+    image: jaybhandari/eathappy:client # Use Node.js version 18
     working_dir: /app/auth-client
-    environment:
-      - NODE_ENV=development
     ports:
       - "5173:5173"
-    volumes:
-      - ./auth-client:/app/auth-client
-    command: sh -c "npm install -g vite && npm run dev"
+    # volumes:
+    #   - ./auth-client:/app
+    environment:
+      - NODE_ENV=development
+    networks:
+      - frontend   
+    # command: >
+    #   sh -c "rm -rf node_modules package-lock.json && npm install && npm run dev"
 
   auth-server:
-    image: node:18.2.0-alpine3.15
+    image: node:18.2.0-alpine3.15 # Use Node.js version 16.20.1
     working_dir: /app/auth-server
+    ports:
+      - "8000:8000"
+    # volumes:
+    #   - ./auth-server:/app
     environment:
       - NODE_ENV=development
       - MONGODB_URI=mongodb+srv://jaybhandari2404:LOhWsmZSlv1WbZrd@cluster0.nj8fje8.mongodb.net/Auth-Yt?retryWrites=true&w=majority&appName=Cluster0
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./auth-server:/app/auth-server
     depends_on:
       - auth-client
-    command: sh -c "npm install -g nodemon && npm run start-dev"
+    networks:
+      - frontend  
+    # command: >
+    #   sh -c "rm -rf node_modules package-lock.json && npm install && npm start"
 
-
-  db:
-    image: mongo:4.0-xenial
-    ports:
-      - 27017:27017
-    volumes:
-      - vidly:/data/db
-
-volumes:
-  vidly:
+networks:
+  frontend:
+    # name: eathappyfood
+    # external: true
+    

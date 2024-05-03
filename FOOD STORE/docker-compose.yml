@@ -2,7 +2,7 @@ version: '3'
 
 services:
   auth-client:
-    image: jaybhandari/eathappy:client # Use Node.js version 18
+    image: jaybhandari/eathappy:client 
     working_dir: /app/auth-client
     ports:
       - "5173:5173"
@@ -12,7 +12,7 @@ services:
       - frontend   
 
   auth-server:
-    image: jaybhandari/eathappy:server # Use Node.js version 16.20.1
+    image: jaybhandari/eathappy:server 
     working_dir: /app/auth-server
     ports:
       - "8000:8000"

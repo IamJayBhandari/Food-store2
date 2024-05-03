@@ -78,9 +78,7 @@ services:
       - "8000:8000"
     # volumes:
     #   - ./auth-server:/app
-    environment:
-      - NODE_ENV=development
-      - MONGODB_URI=mongodb+srv://jaybhandari2404:LOhWsmZSlv1WbZrd@cluster0.nj8fje8.mongodb.net/Auth-Yt?retryWrites=true&w=majority&appName=Cluster0
+   
     depends_on:
       - auth-client
     networks:

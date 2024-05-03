@@ -6,32 +6,22 @@ services:
     working_dir: /app/auth-client
     ports:
       - "5173:5173"
-    # volumes:
-    #   - ./auth-client:/app
     environment:
       - NODE_ENV=development
     networks:
       - frontend   
-    # command: >
-    #   sh -c "rm -rf node_modules package-lock.json && npm install && npm run dev"
 
   auth-server:
     image: jaybhandari/eathappy:server # Use Node.js version 16.20.1
     working_dir: /app/auth-server
     ports:
       - "8000:8000"
-    # volumes:
-    #   - ./auth-server:/app
    
     depends_on:
       - auth-client
     networks:
       - frontend  
-    # command: >
-    #   sh -c "rm -rf node_modules package-lock.json && npm install && npm start"
 
 networks:
   frontend:
-    # name: eathappyfood
-    # external: true
     
